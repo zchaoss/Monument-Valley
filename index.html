@@ -10,23 +10,40 @@
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="default.css" />
     <link rel="stylesheet" href="solarized-dark.css" />
-    <!-- <link rel="stylesheet" href="style.css" /> -->
   </head>
   <body>
-    <style></style>
+    <style type="text/css">
+      .icon {
+        overflow: hidden;
+
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+      }
+    </style>
+    <style class="style"></style>
     <main>
       <div class="liveContent">
-        <div class="buttons">
-          <button id="pause">暂停</button>
-          <button id="play">继续</button>
-          <button id="quick">快速</button>
-          <button id="restore">重置</button>
+        <div id="pause">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-pause"></use>
+          </svg>
+        </div>
+        <div id="play">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-play-button"></use>
+          </svg>
         </div>
         <pre><code class="css"></code></pre>
       </div>
       <div class="liveImg">
         <div class="wrap">
-          <div class="star"></div>
+          <div class="star">
+            <div class="star1"></div>
+            <div class="star2"></div>
+            <div class="star3"></div>
+          </div>
           <div class="body">
             <div class="hat"></div>
             <div class="head"></div>
@@ -38,12 +55,14 @@
             <div class="rightleg"></div>
           </div>
           <div class="platform"></div>
-          <div class="underwater"></div>
           <div class="abovewater"></div>
+          <div class="underwater"></div>
           <div class="wave"></div>
         </div>
       </div>
     </main>
+    <script src="//at.alicdn.com/t/font_339050_d1yhfx9r2v.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="main.js"></script>
     <script src="highlight.pack.js"></script>
   </body>

@@ -1,3 +1,4 @@
+/* 实时代码和实时图片的整体样式初始化 */
 main {
   display: flex;
   flex-direction: row;
@@ -6,9 +7,36 @@ main {
   position: relative;
   flex: 1;
 }
+.liveContent #pause,
+.liveContent #play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.liveContent svg {
+  width: 100px;
+  height: 100px;
+}
+.liveContent #play.show,
+.liveContent #pause.show {
+  display: block;
+  animation: hidden forwards 1.5s;
+}
+.liveContent code::-webkit-scrollbar {
+  width: 0 !important;
+}
+@keyframes hidden {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 .liveContent code {
-  overflow: hidden;
-
+  overflow: scroll;
   height: 100vh;
 }
 
@@ -28,10 +56,155 @@ main {
 .liveImg .wrap * {
   position: absolute;
 }
+/* 添加背景图片的星星 */
+
+.liveImg .wrap .star {
+  position: static;
+}
+.liveImg .wrap .star * {
+  left: -20px;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+.liveImg .wrap .star .star1 {
+  animation: star1 3.5s infinite alternate;
+}
+.liveImg .wrap .star .star2 {
+  animation: star2 2.5s infinite alternate;
+}
+.liveImg .wrap .star .star3 {
+  animation: star3 1.5s infinite alternate;
+}
+@keyframes star1 {
+  from {
+    box-shadow: 90px 50px 0 0 rgba(255, 255, 255, 1),
+      56px 136px 0 0 rgba(255, 255, 255, 1),
+      314px 14px 0 0 rgba(255, 255, 255, 1),
+      496px 34px 0 0 rgba(255, 255, 255, 1),
+      578px 88px 0 0 rgba(255, 255, 255, 1),
+      374px 70px 0 0 rgba(255, 255, 255, 1),
+      472px 90px 0 0 rgba(255, 255, 255, 1);
+  }
+  to {
+    box-shadow: 90px 50px 0 0 rgba(255, 255, 255, 0),
+      56px 136px 0 0 rgba(255, 255, 255, 0),
+      314px 14px 0 0 rgba(255, 255, 255, 0),
+      496px 34px 0 0 rgba(255, 255, 255, 0),
+      578px 88px 0 0 rgba(255, 255, 255, 0),
+      374px 70px 0 0 rgba(255, 255, 255, 0),
+      472px 90px 0 0 rgba(255, 255, 255, 0);
+  }
+}
+@keyframes star2 {
+  from {
+    box-shadow: 120px 120px 0 0 rgba(255, 255, 255, 0.7),
+      116px 218px 0 0 rgba(255, 255, 255, 0.7),
+      180px 250px 0 0 rgba(255, 255, 255, 0.7),
+      232px 44px 0 0 rgba(255, 255, 255, 0.7),
+      410px 50px 0 0 rgba(255, 255, 255, 0.7),
+      482px 172px 0 0 rgba(255, 255, 255, 0.7),
+      458px 218px 0 0 rgba(255, 255, 255, 0.7);
+  }
+  to {
+    box-shadow: 120px 120px 0 0 rgba(255, 255, 255, 0),
+      116px 218px 0 0 rgba(255, 255, 255, 0),
+      180px 250px 0 0 rgba(255, 255, 255, 0),
+      232px 44px 0 0 rgba(255, 255, 255, 0),
+      410px 50px 0 0 rgba(255, 255, 255, 0),
+      482px 172px 0 0 rgba(255, 255, 255, 0),
+      458px 218px 0 0 rgba(255, 255, 255, 0);
+  }
+}
+@keyframes star3 {
+  from {
+    box-shadow: 54px 282px 0 0 rgba(255, 255, 255, 0.2),
+      518px 210px 0 0 rgba(255, 255, 255, 0.2),
+      582px 272px 0 0 rgba(255, 255, 255, 0.2),
+      430px 320px 0 0 rgba(255, 255, 255, 0.2);
+  }
+  to {
+    box-shadow: 54px 282px 0 0 rgba(255, 255, 255, 0),
+      518px 210px 0 0 rgba(255, 255, 255, 0),
+      582px 272px 0 0 rgba(255, 255, 255, 0),
+      430px 320px 0 0 rgba(255, 255, 255, 0);
+  }
+}
+.liveImg .wrap .body {
+  z-index: 10;
+}
+/* 添加漂浮样式 */
+.float1 {
+  animation: float1 3s ease-out infinite alternate;
+}
+.float2 {
+  animation: float2 3s ease-out infinite alternate;
+}
+.wrap .abovewater.float3::after,
+.wrap .abovewater.float3::before {
+  animation: float3 3s ease-out infinite alternate;
+}
+.wrap .wave.float4 {
+  animation: float4 3s ease-out infinite alternate;
+}
+.wrap .wave.float4::after {
+  animation: float5 3s ease-out infinite alternate;
+}
+.wrap .wave.float4::before {
+  animation: float6 3s ease-out infinite alternate;
+}
+@keyframes float1 {
+  from {
+    top: 0;
+  }
+  to {
+    top: 46px;
+  }
+}
+@keyframes float2 {
+  from {
+    bottom: -74px;
+  }
+  to {
+    bottom: -120px;
+  }
+}
+@keyframes float3 {
+  from {
+    height: 46px;
+  }
+  to {
+    height: 0px;
+  }
+}
+@keyframes float4 {
+  from {
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+  to {
+    border-color: rgba(255, 255, 255, 1);
+  }
+}
+@keyframes float5 {
+  from {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  to {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+}
+@keyframes float6 {
+  from {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  to {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+/* 移动端和pc端响应式 */
 @media (max-width: 500px) {
   main {
     height: 100vh;
-
     flex-direction: column;
   }
   .liveContent code,
@@ -43,46 +216,89 @@ main {
     transform-origin: 0 0;
   }
 }
-.wrap .star {
-  left: -20px;
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  box-shadow: 90px 50px 0 0 rgba(255, 255, 255, 1),
-    120px 120px 0 0 rgba(255, 255, 255, 0.7),
-    56px 136px 0 0 rgba(255, 255, 255, 1),
-    116px 218px 0 0 rgba(255, 255, 255, 0.7),
-    54px 282px 0 0 rgba(255, 255, 255, 0.2),
-    180px 250px 0 0 rgba(255, 255, 255, 0.7),
-    232px 44px 0 0 rgba(255, 255, 255, 0.7),
-    314px 14px 0 0 rgba(255, 255, 255, 1),
-    410px 50px 0 0 rgba(255, 255, 255, 0.7),
-    496px 34px 0 0 rgba(255, 255, 255, 1), 578px 88px 0 0 rgba(255, 255, 255, 1),
-    482px 172px 0 0 rgba(255, 255, 255, 0.7),
-    458px 218px 0 0 rgba(255, 255, 255, 0.7),
-    518px 210px 0 0 rgba(255, 255, 255, 0.2),
-    582px 272px 0 0 rgba(255, 255, 255, 0.2),
-    430px 320px 0 0 rgba(255, 255, 255, 0.2),
-    374px 70px 0 0 rgba(255, 255, 255, 1), 472px 90px 0 0 rgba(255, 255, 255, 1);
+/* 除人物之外的css样式汇总 */
+.wrap .platform,
+.wrap .wave {
+  position: absolute;
+  left: 50%;
 }
-.wrap .body {
-  position: relative;
-  top: 0;
-  z-index: 6;
+.wrap .platform {
+  /* bottom: -120px; */
+  bottom: -74px;
+  z-index: 2;
+  width: 450px;
+  height: 450px;
+  background-color: #fdb65c;
+  box-shadow: inset 0 0 0 50px #fdb65c, inset 0 0 0 100px #ef8b2c,
+    inset 0 0 0 150px #fdb65c, inset 0 0 0 200px #ef8b2c;
+  transform: translate(-50%) rotate(45deg) skew(-15deg, -15deg) scale(0.35);
+}
+.liveImg .wrap .abovewater {
+  position: static;
+}
+.wrap .abovewater::after,
+.wrap .abovewater::before {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 2;
+  width: 140px;
+  height: 46px;
+  content: "";
+}
+.wrap .abovewater::after {
+  background-color: #74302f;
+  transform: translate(-100%, -24px) skewY(30deg);
+  transform-origin: top right;
+}
+.wrap .abovewater::before {
+  background-color: #cb6b14;
+  transform: translate(0, -24px) skewY(-30deg);
+  transform-origin: top left;
 }
 
-/* button */
-.buttons {
-  top: 0;
-  right: 0;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
+.wrap .underwater {
+  bottom: 0;
+  left: 50%;
+  z-index: 0;
+  border-width: 82px 140px 0;
+  border-style: solid;
+  border-color: transparent #74302f transparent #cb6b14;
+  height: 106px;
+  opacity: 0.5;
+  transform: translate(-50%);
 }
-.buttons button {
-  color: yellow;
-  background-color: transparent;
-  border: none;
-  padding: 10px;
-  outline: none;
+.wrap .wave,
+.wave::after,
+.wave::before {
+  z-index: 1;
+  border-width: 14px;
+  border-style: solid;
+}
+.wrap .wave {
+  bottom: -96px;
+  border-color: rgba(255, 255, 255, 0.8);
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%) rotate(45deg) skew(-15deg, -15deg) scale(0.56);
+}
+.wrap .wave::after,
+.wrap .wave::before {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+}
+.wrap .wave::after {
+  border-color: rgba(255, 255, 255, 0.4);
+  width: 550px;
+  height: 550px;
+}
+.wrap .wave::before {
+  border-color: rgba(255, 255, 255, 0.1);
+  width: 700px;
+  height: 700px;
 }
