@@ -5,17 +5,31 @@ let player = {
   id: undefined,
   i: 0,
   status: 1,
+  speed: 200,
   play() {
-    player.id = setInterval(player.run, 0);
+    player.id = setInterval(player.run, player.speed);
   },
   pause() {
     clearInterval(player.id);
   },
   run() {
+    let note = `/*点击代码块可暂停或者继续渲染图片
+当下方的图片的动画开始运行，
+点击人物可暂停或者继续动画*/`.length;
+    if (player.i > note) {
+      clearInterval(player.id);
+      player.speed = 0;
+      player.play();
+    }
     if (player.i >= str.length) {
       player.pause();
+      click();
       $(`.liveContent`).off(`click`);
-      addNode.call(Nodelist);
+      let id = setTimeout(() => {
+        toggleNode.call(Nodelist);
+        clearTimeout(id);
+      }, 400);
+      // toggleNode.call(Nodelist);
       return;
     }
     let content = str.substring(0, ++player.i);
@@ -34,41 +48,34 @@ let Nodelist = {
   ".wrap .abovewater": `float3`,
   ".wrap .wave": `float4`,
 };
-// 元素含有类名的时候等动画完成一个循环在删除类名
+
 let obj = {
-  i: 0, //判断动画执行的循环数
-  status: 0, //判断执行动画的时候是否触发了click事件,
-  get timer() {
-    if (!(++this.i % 2)) {
-      if (this.status) {
-        removeNode.call(Nodelist);
-      }
-    }
-  },
+  timer: 1,
+  status: 0,
 };
-// 添加和删除节点
-function addNode() {
+//添加或删除类名
+function toggleNode() {
   for (let prop in this) {
-    $(prop).addClass(this[prop]);
+    $(prop).toggleClass(this[prop]);
   }
 }
-function removeNode() {
-  for (let prop in this) {
-    $(prop).removeClass(this[prop]);
-  }
-}
-// 元素不含有类名的时候添加相应类名
-$(`.wrap`).on(`click`, () => {
-  if (!$(`.wrap .platform`).hasClass(`float2`)) {
-    obj.status = 0;
-    addNode.call(Nodelist);
-  } else {
-    obj.status = 1;
+$(`.wrap .platform`).on(`animationiteration`, () => {
+  obj.timer = !obj.timer;
+  if (obj.timer && obj.status) {
+    toggleNode.call(Nodelist);
   }
 });
-
-$(`.wrap .platform`).on(`animationiteration`, () => !obj.timer);
-
+// 元素不含有类名的时候添加相应类名
+function click() {
+  $(`.wrap`).on(`click`, () => {
+    if (!$(`.wrap .platform`).hasClass(`float2`)) {
+      obj.status = 0;
+      toggleNode.call(Nodelist);
+    } else {
+      obj.status = 1;
+    }
+  });
+}
 // 按扭样式设置
 $(`.liveContent`).on(`click`, () => {
   player.status = !player.status;

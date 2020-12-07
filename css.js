@@ -1,4 +1,7 @@
-export default `.wrap .body .hat {
+export default `/*点击代码块可暂停或者继续渲染图片
+当下方的图片的动画开始运行，
+点击人物可暂停或者继续动画*/
+.wrap .body .hat {
   border-width: 200px 50px;
   border-style: solid;
   border-color: transparent transparent #fff transparent;
@@ -84,4 +87,5 @@ export default `.wrap .body .hat {
   width: 200px;
   height: 140px;
   background: radial-gradient(100px 70px, #a43531, transparent);
-}`;
+}
+`;
