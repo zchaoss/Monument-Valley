@@ -1,4 +1,10 @@
+import "../assets/reset.css";
+import "./default.css";
+import "../assets/solarized-dark.css";
+import $ from "jquery";
 import str from "./css.js";
+import hljs from "../assets/highlight.pack.js";
+$(`style`).after(`<style class="style"></style>`);
 let $liveCode = $(`code`);
 let $liveStyle = $(`.style`);
 let player = {
