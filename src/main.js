@@ -1,9 +1,9 @@
 import "../assets/reset.css";
 import "./default.css";
 import "../assets/solarized-dark.css";
-import $ from "jquery";
 import str from "./css.js";
 import hljs from "../assets/highlight.pack.js";
+import $ from "jquery";
 $(`style`).after(`<style class="style"></style>`);
 let $liveCode = $(`code`);
 let $liveStyle = $(`.style`);
@@ -35,7 +35,6 @@ let player = {
         toggleNode.call(Nodelist);
         clearTimeout(id);
       }, 400);
-      // toggleNode.call(Nodelist);
       return;
     }
     let content = str.substring(0, ++player.i);
